@@ -1,7 +1,7 @@
 # Third-party notices
 
-Beatbox redistributes the components below. Each is governed by its own
-licence; nothing in Beatbox's own MIT licence (`LICENSE`) overrides them. The
+Dubdeck redistributes the components below. Each is governed by its own
+licence; nothing in Dubdeck's own MIT licence (`LICENSE`) overrides them. The
 MIT licence does not apply to any file listed here.
 
 ---
@@ -92,16 +92,16 @@ This site uses **LAME**: <https://lame.sourceforge.io/>.
   `--disable-decoder`, `--disable-frontend` and `--disable-analyzer-hooks`. The
   decoder is disabled, so LAME's mpglib decoder, which is under the GPL, is not
   part of this build. Then `src/lame-bridge.c` is linked against `libmp3lame.a`.
-- **Modifications to LAME by Beatbox:** none. We did not rebuild or change the
+- **Modifications to LAME by Dubdeck:** none. We did not rebuild or change the
   WebAssembly. We have not independently confirmed whether the upstream build
   patched LAME's source.
 
 ### Replacing the encoder (including with a modified LAME)
 
-The LAME build is not compiled into Beatbox's own code. It is one separate
+The LAME build is not compiled into Dubdeck's own code. It is one separate
 file, `vendor/mediabunny-mp3-encoder.min.mjs`. The browser loads it at runtime,
 and `js/app.js` imports exactly one function from it, `registerMp3Encoder()`.
-To run Beatbox with a different or modified LAME:
+To run Dubdeck with a different or modified LAME:
 
 1. Get the LAME 3.100 source (link above) and make any changes you want.
 2. Build `libmp3lame.a` with Emscripten using the flags above.
@@ -166,11 +166,11 @@ repository's `LICENSE`.
 ## Codecs
 
 - **MP3 encoding** uses the LAME build described above. It runs only in the
-  visitor's browser. No patent licence of any kind is granted by Beatbox, its
+  visitor's browser. No patent licence of any kind is granted by Dubdeck, its
   MIT licence or the operator.
 - **OGG (Vorbis) and Opus decoding** uses the browser's built-in WebCodecs
-  decoders. Beatbox does not contain, redistribute or implement a Vorbis or
+  decoders. Dubdeck does not contain, redistribute or implement a Vorbis or
   Opus decoder. Mediabunny only reads the Ogg container and passes the packets
   to the browser. The browser vendor supplies and licenses those decoders.
 - **WAV and AIFF** are uncompressed PCM. AIFF is rewrapped as WAV in memory by
-  Beatbox's own code (`js/aiff.js`, MIT).
+  Dubdeck's own code (`js/aiff.js`, MIT).

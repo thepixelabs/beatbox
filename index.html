@@ -2,15 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.counterapi.dev; form-action 'none'; base-uri 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Beatbox | Free In-Browser WAV, AIFF and OGG to MP3 Converter</title>
-  <meta name="description" content="Free WAV, AIFF and OGG to MP3 converter that runs in your browser. Get 320 kbps or an MP3 under 16 MB to send. Your file is never uploaded.">
+  <title>WAV to MP3 Converter: Free, No Upload | Dubdeck</title>
+  <meta name="description" content="Free WAV, AIFF and OGG to MP3 converter in your browser. Get 320 kbps or an MP3 under 16 MB to send. Your audio is never uploaded. No account.">
+  <link rel="canonical" href="https://dubdeck.pixelabs.net/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#EFEADF">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dubdeck">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://dubdeck.pixelabs.net/">
+  <meta property="og:title" content="Dubdeck: free WAV, AIFF and OGG to MP3 converter">
+  <meta property="og:description" content="Free WAV, AIFF and OGG to MP3 converter in your browser. Get 320 kbps or an MP3 under 16 MB to send. Your audio is never uploaded. No account.">
+  <meta property="og:image" content="https://dubdeck.pixelabs.net/assets/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dubdeck cassette label with the text WAV, AIFF, OGG to MP3. Free. Nothing uploaded.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dubdeck: free WAV, AIFF and OGG to MP3 converter">
+  <meta name="twitter:description" content="Free WAV, AIFF and OGG to MP3 converter in your browser. Get 320 kbps or an MP3 under 16 MB to send. Your audio is never uploaded. No account.">
+  <meta name="twitter:image" content="https://dubdeck.pixelabs.net/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="Dubdeck cassette label with the text WAV, AIFF, OGG to MP3. Free. Nothing uploaded.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" as="font" href="assets/fonts/archivo-latin-wdth.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="assets/fonts/ibm-plex-mono-latin-500.woff2" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dubdeck",
+    "url": "https://dubdeck.pixelabs.net/",
+    "description": "Free in-browser converter from WAV, AIFF, OGG and MP3 to MP3. Choose 320 kbps or the best quality that fits under 16 MB. Your audio is never uploaded.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (modern web browser)",
+    "browserRequirements": "Requires a modern web browser with JavaScript and WebAssembly. Tested in Chrome.",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "image": "https://dubdeck.pixelabs.net/assets/og-image.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Converts WAV, AIFF, OGG and MP3 files to MP3",
+      "Max quality mode: 320 kbps MP3",
+      "Sharing size mode: best quality that fits under 16 MB",
+      "Converts in your browser, audio is never uploaded",
+      "Several files at once",
+      "Free, no account"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "PixeLabs",
+      "url": "https://pixelabs.net"
+    }
+  }
+  </script>
+  <!-- FAQPage: question and answer text must match the visible #faq section exactly. Update both together. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is my file uploaded?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The conversion runs in your browser, on your device. There's no account and your audio is never sent anywhere. The only thing the page sends out is a tiny anonymous ping to a public counter (the number on the cassette) when a file finishes, with no file name, no file details and nothing about you. Don't take our word for it: open your browser's network tab, convert a file, and watch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does sharing size work, and what is under 16 MB for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It looks for the best quality that still fits under 16 MB, then shows you the bitrate and size when each file is done. A 12 minute stereo WAV would be about 27 MB at 320 kbps. Here it came out at 160 kbps and 13.7 MB. If it has to go below 64 kbps, it switches to mono. The 16 MB target is for files you want to send: chat, email, a client's inbox. WhatsApp is one place people share files. We can't speak for any app's limit, so check yours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 320 kbps the same as my WAV?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 320 kbps is the most an MP3 can offer, but MP3 is lossy: a smaller file made by discarding audio data, not a copy of your WAV. Keep the WAV as your master, and send it or the stems when someone needs to mix, master or process the track."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What files work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files work too, so you can re-encode one to 320 kbps or squeeze it under 16 MB. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if it says the file is too long?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In sharing size mode, past roughly an hour of audio it stops with an error instead of handing you something that won't fit. Split the track into parts and run them again. Max quality never promises a size, and at 320 kbps a track over roughly 6 to 7 minutes will be bigger than 16 MB. We haven't tested a maximum file size, so we won't quote one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do tags and artwork survive?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AIFF tags and artwork are dropped. We haven't verified what happens to WAV tags, so assume nothing and re-tag after converting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which browsers does it work in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We've tested in Chrome. Other modern browsers may work, but we haven't verified them, so we won't say they do."
+        }
+      }
+    ]
+  }
+  </script>
   <script src="js/theme.js"></script>
 </head>
 <body>
@@ -19,12 +138,9 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Beatbox home">
-      <svg class="brand-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <rect width="24" height="24" rx="7" fill="currentColor"/>
-        <path d="M5 10v4M9 6v12M13 8v8M17 11v2" stroke="var(--paper)" stroke-width="2" stroke-linecap="square"/>
-      </svg>
-      <span class="brand-name">Beatbox</span>
+    <a class="brand" href="./" aria-label="Dubdeck home">
+      <svg class="brand-icon" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2B2724"/><rect x="4" y="5" width="24" height="12" rx="2.2" fill="#F2ECDC"/><rect x="4" y="12.2" width="24" height="2.6" fill="#E8542A"/><rect x="4" y="14.8" width="24" height="2.2" fill="#F2B632"/><rect x="8" y="7.2" width="10" height="2.2" rx="1.1" fill="#1A1815"/><rect x="5.5" y="19.5" width="21" height="8" rx="4" fill="#141210"/><circle cx="11.5" cy="23.5" r="2.7" fill="#F2ECDC"/><circle cx="11.5" cy="23.5" r="1.05" fill="#141210"/><circle cx="20.5" cy="23.5" r="2.7" fill="#F2ECDC"/><circle cx="20.5" cy="23.5" r="1.05" fill="#141210"/></svg>
+      <span class="brand-name">Dubdeck</span>
     </a>
     <nav class="site-nav">
       <a href="#modes">Which mode?</a>
@@ -49,17 +165,17 @@
         <i class="screw tl"></i><i class="screw tr"></i><i class="screw bl"></i><i class="screw br"></i>
 
         <div class="label">
-          <div class="label-top mono"><span class="side">Side A</span><span class="formats">WAV &middot; AIFF &middot; OGG &middot; MP3 &rarr; MP3</span><span class="bitrate">320K</span></div>
+          <div class="label-top mono"><span class="side">Side A</span><span class="formats">WAV &middot; AIFF &middot; OGG &middot; MP3 &rarr; MP3</span><span class="used" id="used" hidden><b id="used-count"></b> converted</span></div>
           <div class="label-body">
             <div class="label-main">
-              <h1 class="label-title" aria-label="Beatbox"><span class="t-beat">BEAT</span><span class="t-box">BOX</span></h1>
+              <h1 class="label-title"><span class="t-dub">DUB</span><span class="t-deck">DECK</span><span class="visually-hidden">: free WAV to MP3 converter</span></h1>
               <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
             </div>
             <div class="label-side">
               <p class="hero-sub">Turn a big WAV, AIFF or OGG into an MP3 you can actually send.</p>
               <p class="hero-lede">
-                Drop a WAV, AIFF or OGG, get back an MP3 small enough to send. It all happens
-                in your browser, so your file never leaves your device.
+                Free WAV to MP3 converter in your browser. Drop a WAV, AIFF or OGG, get an MP3 small enough to send.
+                Your file never leaves your device.
               </p>
             </div>
           </div>
@@ -96,14 +212,14 @@
 
         <ul class="queue" id="list" aria-live="polite"></ul>
 
-        <div class="shell-foot" aria-hidden="true"><i></i><b>BEATBOX &middot; TYPE II</b><i></i></div>
+        <div class="shell-foot" aria-hidden="true"><i></i><b>DUBDECK &middot; TYPE II</b><i></i></div>
       </div>
     </div>
   </section>
 
   <div class="wrap">
     <div class="jcard">
-      <div class="jcard-head mono"><span>Liner notes</span><span>Beatbox &middot; Side A</span></div>
+      <div class="jcard-head mono"><span>Liner notes</span><span>Dubdeck &middot; Side A</span></div>
 
   <section class="section" id="modes">
     <div class="wrap">
@@ -129,18 +245,18 @@
   <section class="section" id="how">
     <div class="wrap">
       <div class="section-head">
-        <h2>How it works</h2>
-        <p class="sub">Three steps, no account.</p>
+        <h2>How to convert WAV to MP3</h2>
+        <p class="sub">Three steps, no account. AIFF and OGG work the same way.</p>
       </div>
       <div class="grid">
         <article class="card"><span class="num mono">01</span><h3>Pick a mode</h3><p>Max quality for 320 kbps, or Convert to sharing size for an MP3 under 16 MB.</p></article>
-        <article class="card"><span class="num mono">02</span><h3>Drop your files</h3><p>WAV, AIFF or OGG, one or several. The conversion runs on your device.</p></article>
+        <article class="card"><span class="num mono">02</span><h3>Drop your files</h3><p>WAV, AIFF, OGG or MP3, one or several. The conversion runs on your device.</p></article>
         <article class="card"><span class="num mono">03</span><h3>Save the MP3s</h3><p>Each file downloads automatically, and the page shows its bitrate and size.</p></article>
       </div>
       <div class="proof">
         <h3>Your file never leaves your device</h3>
         <p>No account, no upload, no cost. The conversion runs in your browser, so an unreleased bounce never lands on someone else's server.</p>
-        <p style="margin-top:10px"><strong>Check it yourself:</strong> open your browser's network tab, convert a file, and watch. The page's security policy blocks connections to other sites.</p>
+        <p style="margin-top:10px"><strong>Check it yourself:</strong> open your browser's network tab, convert a file, and watch. Your audio is never in any request. The only outside call is a tiny anonymous counter that adds one to the number on the cassette.</p>
       </div>
     </div>
   </section>
@@ -161,7 +277,7 @@
     <div class="wrap">
       <div class="section-head"><h2>Questions</h2></div>
       <div class="faq">
-        <details><summary>Is my file uploaded?</summary><p>No. The conversion runs in your browser, on your device. There's no account and nothing is sent anywhere. Don't take our word for it: open your browser's network tab, convert a file, and watch. The page's security policy also blocks connections to other sites.</p></details>
+        <details><summary>Is my file uploaded?</summary><p>No. The conversion runs in your browser, on your device. There's no account and your audio is never sent anywhere. The only thing the page sends out is a tiny anonymous ping to a public counter (the number on the cassette) when a file finishes, with no file name, no file details and nothing about you. Don't take our word for it: open your browser's network tab, convert a file, and watch.</p></details>
         <details><summary>How does sharing size work, and what is under 16 MB for?</summary><p>It looks for the best quality that still fits under 16 MB, then shows you the bitrate and size when each file is done. A 12 minute stereo WAV would be about 27 MB at 320 kbps. Here it came out at 160 kbps and 13.7 MB. If it has to go below 64 kbps, it switches to mono. The 16 MB target is for files you want to send: chat, email, a client's inbox. WhatsApp is one place people share files. We can't speak for any app's limit, so check yours.</p></details>
         <details><summary>Is 320 kbps the same as my WAV?</summary><p>No. 320 kbps is the most an MP3 can offer, but MP3 is lossy: a smaller file made by discarding audio data, not a copy of your WAV. Keep the WAV as your master, and send it or the stems when someone needs to mix, master or process the track.</p></details>
         <details><summary>What files work?</summary><p>WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files work too, so you can re-encode one to 320 kbps or squeeze it under 16 MB. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo.</p></details>
@@ -176,7 +292,7 @@
     <span class="the-bunny" aria-hidden="true">🐰</span>
     <div class="credit-text">
       <h2 id="credit-title">Thanks to Mediabunny</h2>
-      <p>Beatbox is built on <strong>Mediabunny</strong>, the open-source library by <strong>Vanilagy</strong> that reads your file and writes the MP3. The encoder is Mediabunny's build of <a href="https://lame.sourceforge.io/" target="_blank" rel="noopener">LAME</a>, running as WebAssembly.</p>
+      <p>Dubdeck is built on <strong>Mediabunny</strong>, the open-source library by <strong>Vanilagy</strong> that reads your file and writes the MP3. The encoder is Mediabunny's build of <a href="https://lame.sourceforge.io/" target="_blank" rel="noopener">LAME</a>, running as WebAssembly.</p>
     </div>
     <div class="credit-actions">
       <a class="btn btn--sm" href="https://mediabunny.dev" target="_blank" rel="noopener">mediabunny.dev</a>

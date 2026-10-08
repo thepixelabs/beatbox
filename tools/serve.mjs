@@ -26,6 +26,8 @@ const TYPES = {
   '.txt':  'text/plain; charset=utf-8',
   '.md':   'text/markdown; charset=utf-8',
   '.png':  'image/png',
+  '.jpg':  'image/jpeg',
+  '.xml':  'application/xml; charset=utf-8',
   '.ico':  'image/x-icon',
 };
 
@@ -51,5 +53,5 @@ createServer(async (req, res) => {
     res.writeHead(500).end(String(err));
   }
 }).listen(PORT, () => {
-  console.log(`Beatbox dev server → http://127.0.0.1:${PORT}`);
+  console.log(`Dubdeck dev server → http://127.0.0.1:${PORT}`);
 });

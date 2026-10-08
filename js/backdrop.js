@@ -1,4 +1,4 @@
-/* Beatbox backdrop: a ridgeline plot. Rows of waveform stacked front to back,
+/* Dubdeck backdrop: a ridgeline plot. Rows of waveform stacked front to back,
    each row hiding the one behind it, drifting slowly like a waterfall. */
 (() => {
   'use strict';

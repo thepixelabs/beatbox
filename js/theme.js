@@ -3,7 +3,7 @@
    prefers-color-scheme media query in the CSS decide. */
 (() => {
   'use strict';
-  const KEY = 'bb-theme';
+  const KEY = 'dd-theme';
   const ORDER = ['system', 'light', 'dark'];
   const root = document.documentElement;
   const meta = document.querySelector('meta[name="theme-color"]');

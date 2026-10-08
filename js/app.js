@@ -2,6 +2,7 @@ import {
   ALL_FORMATS, BlobSource, BufferTarget, Conversion, Input, Mp3OutputFormat, Output, canEncodeAudio,
 } from '../vendor/mediabunny.min.mjs';
 import { aiffToWav, isAiff } from './aiff.js';
+import { initCounter, bumpCounter } from './counter.js';
 import { registerMp3Encoder } from '../vendor/mediabunny-mp3-encoder.min.mjs';
 
 const MAX_BITRATE = 320_000;
@@ -25,6 +26,7 @@ const drop = document.getElementById('drop');
 const file = document.getElementById('file');
 const list = document.getElementById('list');
 const stage = document.querySelector('.cassette');
+initCounter();
 
 // Browsers have no native MP3 encoder; fall back to the bundled LAME WASM.
 const ready = canEncodeAudio('mp3').then((ok) => { if (!ok) registerMp3Encoder(); });
@@ -106,6 +108,7 @@ async function convert(f) {
     li.className = 'job ok';
     stat.textContent = `Done: ${bitrate / 1000} kbps, ${mb(blob.size)}. Download started. `;
     a.textContent = 'Save again'; stat.append(a);
+    bumpCounter();
   } catch (e) {
     li.className = 'job err';
     stat.textContent = 'Failed: ' + (e?.message ?? e);

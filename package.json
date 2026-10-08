@@ -1,5 +1,5 @@
 {
-  "name": "beatbox",
+  "name": "dubdeck",
   "version": "1.0.0",
   "private": true,
   "description": "Convert WAV to 320 kbps MP3 entirely in the browser. Static page, no server, no upload.",

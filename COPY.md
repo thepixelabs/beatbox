@@ -1,4 +1,4 @@
-# Beatbox page copy
+# Dubdeck page copy
 
 Exact strings to paste, grouped in page order. Voice: warm, direct, a little wit, producer-literate. No em or en dashes, no exclamation marks. Unit rule: "MB" is what the page shows, and the target is always written "under 16 MB".
 
@@ -13,7 +13,7 @@ Implementer notes:
 
 **Title**
 ```
-Beatbox | Free In-Browser WAV and AIFF to MP3 Converter
+Dubdeck | Free In-Browser WAV and AIFF to MP3 Converter
 ```
 
 **Meta description** (134 characters)
@@ -25,7 +25,7 @@ Free WAV and AIFF to MP3 converter that runs in your browser. Get 320 kbps or an
 
 ## 1. Hero
 
-**H1 / wordmark:** `Beatbox` (unchanged)
+**H1 / wordmark:** `Dubdeck` (unchanged)
 
 **Hero tag**
 ```
@@ -256,7 +256,7 @@ It's all thanks to Mediabunny
 
 **Paragraph 1** (edit: "your WAV or AIFF" in place of "your audio")
 ```
-Beatbox is built on top of Mediabunny, a free, open-source library by Vanilagy that handles the genuinely hard parts: reading your WAV or AIFF, driving the encoder, and writing a proper MP3 back out. The MP3 encoding itself is Mediabunny's LAME build, running as WebAssembly.
+Dubdeck is built on top of Mediabunny, a free, open-source library by Vanilagy that handles the genuinely hard parts: reading your WAV or AIFF, driving the encoder, and writing a proper MP3 back out. The MP3 encoding itself is Mediabunny's LAME build, running as WebAssembly.
 ```
 
 **Paragraph 2** (unchanged)

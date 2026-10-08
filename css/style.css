@@ -1,5 +1,5 @@
 /* ============================================================
-   Beatbox
+   Dubdeck
    The whole page is one cassette: a label with the title, a tape
    window (the drop zone) with two reels, deck keys for the mode,
    and the liner notes on a J-card underneath. Light, dark or system.
@@ -222,7 +222,7 @@ html[data-theme-pref="dark"] .theme-toggle .i-dark { display: block; }
   display: flex; align-items: baseline; flex-wrap: nowrap; font-weight: 900; font-stretch: 62%; text-transform: uppercase;
   font-size: clamp(4rem, 22vw, 8.6rem); line-height: 0.88; letter-spacing: -0.015em; margin: 10px 0 4px -0.03em; user-select: none;
 }
-.label-title .t-box { color: var(--signal); }
+.label-title .t-deck { color: var(--signal); }
 .stripes { display: grid; gap: 4px; margin-block: 6px 10px; }
 .stripes i { display: block; height: 8px; border-radius: 4px; }
 .stripes i:nth-child(1) { background: var(--red); width: 100%; }
@@ -450,3 +450,7 @@ html[data-theme-pref="dark"] .theme-toggle .i-dark { display: block; }
 .foot-links { display: flex; flex-wrap: wrap; gap: 18px; }
 .site-foot a { text-decoration: none; font-weight: 700; border-bottom: 2px solid var(--ink); transition: background 120ms; }
 .site-foot a:hover { background: var(--signal); color: #1A1815; }
+
+/* Usage counter chip on the label */
+.label-top .used { display: inline-flex; align-items: center; gap: 7px; }
+.label-top .used b { background: var(--l-ink); color: var(--sun); padding: 1px 8px; border-radius: 4px; letter-spacing: 0.08em; font-weight: 500; }
