@@ -2,7 +2,7 @@ import {
   ALL_FORMATS, BlobSource, BufferTarget, Conversion, Input, Mp3OutputFormat, Output, canEncodeAudio,
 } from '../vendor/mediabunny.min.mjs';
 import { aiffToWav, isAiff } from './aiff.js';
-import { initCounter, bumpCounter } from './counter.js';
+import { initCounter, bumpCounter } from './counter.js?v=3';
 import { registerMp3Encoder } from '../vendor/mediabunny-mp3-encoder.min.mjs';
 
 const MAX_BITRATE = 320_000;

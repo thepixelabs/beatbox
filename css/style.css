@@ -452,5 +452,5 @@ html[data-theme-pref="dark"] .theme-toggle .i-dark { display: block; }
 .site-foot a:hover { background: var(--signal); color: #1A1815; }
 
 /* Usage counter chip on the label */
-.label-top .used { display: inline-flex; align-items: center; gap: 7px; }
-.label-top .used b { background: var(--l-ink); color: var(--sun); padding: 1px 8px; border-radius: 4px; letter-spacing: 0.08em; font-weight: 500; }
+.label-top .used { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; }
+.label-top .used b { background: var(--l-ink); color: var(--sun); padding: 2px 12px; border-radius: 6px; letter-spacing: 0.06em; font-weight: 500; font-size: 24px; line-height: 1.25; }

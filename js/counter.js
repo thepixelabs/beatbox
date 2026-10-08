@@ -1,40 +1,43 @@
 /* Community counter: how many files Dubdeck has converted.
    One anonymous request to CounterAPI per finished file, and one to read the
-   total on load. Nothing about the file or the user is sent. If the service is
-   unreachable the badge simply stays hidden. The ?_t= parameter defeats the
-   service's CDN cache, which otherwise serves a stale total. */
+   total. Nothing about the file or the user is sent. If the service is
+   unreachable the badge simply stays hidden.
+
+   Two quirks of the service shape this file:
+   - Plain URLs are cached by its CDN for hours, so every request carries a
+     ?_t= parameter to get a fresh answer.
+   - The response to /up carries a stale pre-increment number, so after adding
+     one we read the total again instead of trusting that body.
+   The shown number only ever goes up, so a stale answer can never pull it
+   back down. */
 const BASE = 'https://api.counterapi.dev/v2/pixelabs/dubdeck';
 const badge = document.getElementById('used');
 const digits = document.getElementById('used-count');
 let count = null;
 
-function render() {
-  if (count == null || !badge || !digits) return;
+function show(v) {
+  if (typeof v !== 'number' || !badge || !digits) return;
+  if (count == null || v > count) count = v;
   digits.textContent = count.toLocaleString('en-US');
   badge.hidden = false;
 }
 
-const upCount = (json) => (typeof json?.data?.up_count === 'number' ? json.data.up_count : null);
+async function readTotal() {
+  const res = await fetch(`${BASE}?_t=${Date.now()}`, { cache: 'no-store' });
+  if (res.status === 404) return 0;     // the counter is created by the first conversion
+  if (!res.ok) return null;
+  const json = await res.json();
+  return typeof json?.data?.up_count === 'number' ? json.data.up_count : null;
+}
 
 export async function initCounter() {
-  try {
-    const res = await fetch(`${BASE}?_t=${Date.now()}`, { cache: 'no-store' });
-    if (res.ok) {
-      const v = upCount(await res.json());
-      if (v != null) { count = v; render(); }
-    } else if (res.status === 404) {
-      count = 0; render();           // the counter is created by the first conversion
-    }
-  } catch { /* offline or blocked: leave the badge hidden */ }
+  try { show(await readTotal()); } catch { /* offline or blocked: badge stays hidden */ }
 }
 
 export async function bumpCounter() {
-  if (count != null) { count++; render(); }
+  if (count != null) show(count + 1);   // tick immediately
   try {
-    const res = await fetch(`${BASE}/up?_t=${Date.now()}`, { cache: 'no-store' });
-    if (res.ok) {
-      const v = upCount(await res.json());
-      if (v != null && v >= (count ?? 0)) { count = v; render(); }
-    }
-  } catch { /* offline: the local count still ticked */ }
+    await fetch(`${BASE}/up?_t=${Date.now()}`, { cache: 'no-store' });
+    show(await readTotal());
+  } catch { /* offline: the local tick still shows */ }
 }
