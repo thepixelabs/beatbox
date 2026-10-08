@@ -1,0 +1,17 @@
+# Dependencies (vendor/ holds the copies the site actually serves)
+node_modules/
+
+# Hidden folders and tool state: .claude/, .vscode/, .idea/, agent memory, etc.
+.*/
+.claude*
+
+# Hidden files (macOS, editors, env)
+.DS_Store
+.env
+.env.*
+*.local
+
+# Logs and scratch
+*.log
+npm-debug.log*
+zz-*

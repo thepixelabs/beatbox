@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Beatbox | Free In-Browser WAV, AIFF and OGG to MP3 Converter</title>
+  <meta name="description" content="Free WAV, AIFF and OGG to MP3 converter that runs in your browser. Get 320 kbps or an MP3 under 16 MB to send. Your file is never uploaded.">
+  <meta name="theme-color" content="#EFEADF">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="font" href="assets/fonts/archivo-latin-wdth.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="assets/fonts/ibm-plex-mono-latin-500.woff2" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+<canvas id="ridge" class="ridge" aria-hidden="true"></canvas>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Beatbox home">
+      <svg class="brand-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <rect width="24" height="24" rx="7" fill="currentColor"/>
+        <path d="M5 10v4M9 6v12M13 8v8M17 11v2" stroke="var(--paper)" stroke-width="2" stroke-linecap="square"/>
+      </svg>
+      <span class="brand-name">Beatbox</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#modes">Which mode?</a>
+      <a href="#faq">Questions</a>
+      <a href="#bunny">Thanks</a>
+      <a href="https://pixelabs.net" target="_blank" rel="noopener" class="pixelabs-link" aria-label="PixeLabs website" title="PixeLabs">
+        <span>PixeLabs</span>
+      </a>
+      <button type="button" class="theme-toggle" id="theme" aria-label="Theme: system. Switch to light.">
+        <svg class="i-system" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4"/></svg>
+        <svg class="i-light" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><rect x="8" y="8" width="8" height="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        <svg class="i-dark" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="deck">
+    <div class="wrap">
+      <div class="cassette" id="stage-drop">
+        <i class="screw tl"></i><i class="screw tr"></i><i class="screw bl"></i><i class="screw br"></i>
+
+        <div class="label">
+          <div class="label-top mono"><span class="side">Side A</span><span class="formats">WAV &middot; AIFF &middot; OGG &middot; MP3 &rarr; MP3</span><span class="bitrate">320K</span></div>
+          <div class="label-body">
+            <div class="label-main">
+              <h1 class="label-title" aria-label="Beatbox"><span class="t-beat">BEAT</span><span class="t-box">BOX</span></h1>
+              <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+            </div>
+            <div class="label-side">
+              <p class="hero-sub">Turn a big WAV, AIFF or OGG into an MP3 you can actually send.</p>
+              <p class="hero-lede">
+                Drop a WAV, AIFF or OGG, get back an MP3 small enough to send. It all happens
+                in your browser, so your file never leaves your device.
+              </p>
+            </div>
+          </div>
+          <div class="hero-facts">
+            <span class="fact mono">Free</span>
+            <span class="fact mono">Nothing uploaded</span>
+            <span class="fact mono">WAV, AIFF, OGG, MP3</span>
+            <span class="fact mono">Under 16 MB option</span>
+          </div>
+        </div>
+
+        <div class="window">
+          <label class="drop" id="drop" for="file" tabindex="0" role="button" aria-label="Choose WAV, AIFF, OGG or MP3 files to convert">
+            <svg class="reel reel-l" viewBox="0 0 100 100" aria-hidden="true"><circle class="tape" cx="50" cy="50" r="47" fill="#3a2a20"/><g class="spin"><circle cx="50" cy="50" r="25" fill="#E9E2D0"/><circle cx="50" cy="50" r="16" fill="#0B0A09"/><g fill="#E9E2D0"><rect x="47" y="35" width="6" height="9" transform="rotate(0 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(60 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(120 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(180 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(240 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(300 50 50)"/></g></g></svg>
+            <div class="drop-mid">
+              <p class="drop-title">Drop audio files here</p>
+              <p class="drop-sub">or click to choose. Several at once is fine.</p>
+              <p class="drop-formats mono">WAV &middot; AIFF &middot; OGG &middot; OPUS &middot; MP3</p>
+            </div>
+            <svg class="reel reel-r" viewBox="0 0 100 100" aria-hidden="true"><circle class="tape" cx="50" cy="50" r="47" fill="#3a2a20"/><g class="spin"><circle cx="50" cy="50" r="25" fill="#E9E2D0"/><circle cx="50" cy="50" r="16" fill="#0B0A09"/><g fill="#E9E2D0"><rect x="47" y="35" width="6" height="9" transform="rotate(0 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(60 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(120 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(180 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(240 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(300 50 50)"/></g></g></svg>
+          </label>
+          <input type="file" id="file" accept=".wav,.wave,.aif,.aiff,.aifc,.ogg,.oga,.opus,.mp3,.mpga,audio/*" multiple class="visually-hidden">
+        </div>
+
+        <div class="deck-cap mono"><span class="cap-text">Pick a mode, then drop files</span><span class="cap-rec" aria-hidden="true"><i class="rec"></i><b class="counter"></b></span></div>
+        <div class="modes" id="mode" role="radiogroup" aria-label="Output mode">
+          <button type="button" class="mode" role="radio" aria-checked="true" data-mode="max">
+            <strong>Max quality</strong><span>320 kbps, the best an MP3 can be</span>
+          </button>
+          <button type="button" class="mode" role="radio" aria-checked="false" data-mode="small">
+            <strong>Convert to sharing size</strong><span>Best quality that fits under 16 MB</span>
+          </button>
+        </div>
+
+        <ul class="queue" id="list" aria-live="polite"></ul>
+
+        <div class="shell-foot" aria-hidden="true"><i></i><b>BEATBOX &middot; TYPE II</b><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="jcard">
+      <div class="jcard-head mono"><span>Liner notes</span><span>Beatbox &middot; Side A</span></div>
+
+  <section class="section" id="modes">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Which mode?</h2>
+        <p class="sub">Same converter, two jobs.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="num mono">320 kbps</span>
+          <h3>Max quality</h3>
+          <p>The best an MP3 can be. Pick it when you want the top MP3 setting and size isn't the problem, like batch-converting a folder of bounces without opening your DAW. It doesn't promise a size: past roughly 6 to 7 minutes, expect more than 16 MB.</p>
+        </article>
+        <article class="card">
+          <span class="num mono">Under 16 MB</span>
+          <h3>Convert to sharing size</h3>
+          <p>Pick it when the file has to get through chat, email or a client's inbox. It finds the best quality that still fits under 16 MB, then shows you the bitrate and size. A 12 minute stereo WAV would be about 27 MB at 320 kbps. Here it came out at 160 kbps and 13.7 MB.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p class="sub">Three steps, no account.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><span class="num mono">01</span><h3>Pick a mode</h3><p>Max quality for 320 kbps, or Convert to sharing size for an MP3 under 16 MB.</p></article>
+        <article class="card"><span class="num mono">02</span><h3>Drop your files</h3><p>WAV, AIFF or OGG, one or several. The conversion runs on your device.</p></article>
+        <article class="card"><span class="num mono">03</span><h3>Save the MP3s</h3><p>Each file downloads automatically, and the page shows its bitrate and size.</p></article>
+      </div>
+      <div class="proof">
+        <h3>Your file never leaves your device</h3>
+        <p>No account, no upload, no cost. The conversion runs in your browser, so an unreleased bounce never lands on someone else's server.</p>
+        <p style="margin-top:10px"><strong>Check it yourself:</strong> open your browser's network tab, convert a file, and watch. The page's security policy blocks connections to other sites.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="know">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Good to know</h2>
+      </div>
+      <ul class="know">
+        <li><strong>MP3 is lossy.</strong> Keep your WAV as the master, and send the WAV or stems if someone needs to mix it.</li>
+        <li><strong>320 kbps goes past 16 MB</strong> after about 6 to 7 minutes. Use sharing size when the limit matters.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head"><h2>Questions</h2></div>
+      <div class="faq">
+        <details><summary>Is my file uploaded?</summary><p>No. The conversion runs in your browser, on your device. There's no account and nothing is sent anywhere. Don't take our word for it: open your browser's network tab, convert a file, and watch. The page's security policy also blocks connections to other sites.</p></details>
+        <details><summary>How does sharing size work, and what is under 16 MB for?</summary><p>It looks for the best quality that still fits under 16 MB, then shows you the bitrate and size when each file is done. A 12 minute stereo WAV would be about 27 MB at 320 kbps. Here it came out at 160 kbps and 13.7 MB. If it has to go below 64 kbps, it switches to mono. The 16 MB target is for files you want to send: chat, email, a client's inbox. WhatsApp is one place people share files. We can't speak for any app's limit, so check yours.</p></details>
+        <details><summary>Is 320 kbps the same as my WAV?</summary><p>No. 320 kbps is the most an MP3 can offer, but MP3 is lossy: a smaller file made by discarding audio data, not a copy of your WAV. Keep the WAV as your master, and send it or the stems when someone needs to mix, master or process the track.</p></details>
+        <details><summary>What files work?</summary><p>WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files work too, so you can re-encode one to 320 kbps or squeeze it under 16 MB. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo.</p></details>
+        <details><summary>What if it says the file is too long?</summary><p>In sharing size mode, past roughly an hour of audio it stops with an error instead of handing you something that won't fit. Split the track into parts and run them again. Max quality never promises a size, and at 320 kbps a track over roughly 6 to 7 minutes will be bigger than 16 MB. We haven't tested a maximum file size, so we won't quote one.</p></details>
+        <details><summary>Do tags and artwork survive?</summary><p>AIFF tags and artwork are dropped. We haven't verified what happens to WAV tags, so assume nothing and re-tag after converting.</p></details>
+        <details><summary>Which browsers does it work in?</summary><p>We've tested in Chrome. Other modern browsers may work, but we haven't verified them, so we won't say they do.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="credit" id="bunny" aria-labelledby="credit-title">
+    <span class="the-bunny" aria-hidden="true">🐰</span>
+    <div class="credit-text">
+      <h2 id="credit-title">Thanks to Mediabunny</h2>
+      <p>Beatbox is built on <strong>Mediabunny</strong>, the open-source library by <strong>Vanilagy</strong> that reads your file and writes the MP3. The encoder is Mediabunny's build of <a href="https://lame.sourceforge.io/" target="_blank" rel="noopener">LAME</a>, running as WebAssembly.</p>
+    </div>
+    <div class="credit-actions">
+      <a class="btn btn--sm" href="https://mediabunny.dev" target="_blank" rel="noopener">mediabunny.dev</a>
+      <a class="btn btn--sm" href="https://github.com/Vanilagy/mediabunny" target="_blank" rel="noopener">Star on GitHub</a>
+    </div>
+  </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <p class="mono">Built with <span class="heart-pixel">🧡</span> by <a href="https://pixelabs.net" target="_blank" rel="noopener">PixeLabs</a>. Got a video that's too big? Meet <a href="https://shrinkray.pixelabs.net" target="_blank" rel="noopener">Shrinkray</a>.</p>
+    <nav class="foot-links mono">
+      <a href="./">Convert</a>
+      <a href="https://mediabunny.dev" target="_blank" rel="noopener">Mediabunny</a>
+      <a href="https://shrinkray.pixelabs.net" target="_blank" rel="noopener">Shrinkray</a>
+      <a href="https://pixelabs.net" target="_blank" rel="noopener">PixeLabs</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="js/backdrop.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
