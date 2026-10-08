@@ -1,7 +1,8 @@
 /* Community counter: how many files Dubdeck has converted.
    One anonymous request to CounterAPI per finished file, and one to read the
    total on load. Nothing about the file or the user is sent. If the service is
-   unreachable the badge simply stays hidden. */
+   unreachable the badge simply stays hidden. The ?_t= parameter defeats the
+   service's CDN cache, which otherwise serves a stale total. */
 const BASE = 'https://api.counterapi.dev/v2/pixelabs/dubdeck';
 const badge = document.getElementById('used');
 const digits = document.getElementById('used-count');
@@ -17,7 +18,7 @@ const upCount = (json) => (typeof json?.data?.up_count === 'number' ? json.data.
 
 export async function initCounter() {
   try {
-    const res = await fetch(BASE, { cache: 'no-store' });
+    const res = await fetch(`${BASE}?_t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const v = upCount(await res.json());
       if (v != null) { count = v; render(); }
@@ -30,7 +31,7 @@ export async function initCounter() {
 export async function bumpCounter() {
   if (count != null) { count++; render(); }
   try {
-    const res = await fetch(`${BASE}/up`, { cache: 'no-store' });
+    const res = await fetch(`${BASE}/up?_t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const v = upCount(await res.json());
       if (v != null && v >= (count ?? 0)) { count = v; render(); }

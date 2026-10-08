@@ -2,7 +2,7 @@
 
 **Last updated: [DATE OF PUBLICATION]**
 
-Hey there! Dubdeck is a free little tool that turns WAV, AIFF, OGG and MP3 files
+Hey there! Dubdeck is a free little tool that turns WAV, AIFF and OGG files
 into MP3s without uploading them. By using the site at `[SITE URL]`, you agree
 to these simple rules.
 

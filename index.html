@@ -38,7 +38,7 @@
     "@type": "WebApplication",
     "name": "Dubdeck",
     "url": "https://dubdeck.pixelabs.net/",
-    "description": "Free in-browser converter from WAV, AIFF, OGG and MP3 to MP3. Choose 320 kbps or the best quality that fits under 16 MB. Your audio is never uploaded.",
+    "description": "Free in-browser converter from WAV, AIFF and OGG to MP3. Choose 320 kbps or the best quality that fits under 16 MB. Your audio is never uploaded.",
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any (modern web browser)",
     "browserRequirements": "Requires a modern web browser with JavaScript and WebAssembly. Tested in Chrome.",
@@ -51,7 +51,7 @@
       "priceCurrency": "USD"
     },
     "featureList": [
-      "Converts WAV, AIFF, OGG and MP3 files to MP3",
+      "Converts WAV, AIFF and OGG files to MP3",
       "Max quality mode: 320 kbps MP3",
       "Sharing size mode: best quality that fits under 16 MB",
       "Converts in your browser, audio is never uploaded",
@@ -100,7 +100,7 @@
         "name": "What files work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files work too, so you can re-encode one to 320 kbps or squeeze it under 16 MB. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo."
+          "text": "WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files aren't accepted: re-encoding an MP3 only loses more quality, so start from your WAV or AIFF. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo."
         }
       },
       {
@@ -165,7 +165,7 @@
         <i class="screw tl"></i><i class="screw tr"></i><i class="screw bl"></i><i class="screw br"></i>
 
         <div class="label">
-          <div class="label-top mono"><span class="side">Side A</span><span class="formats">WAV &middot; AIFF &middot; OGG &middot; MP3 &rarr; MP3</span><span class="used" id="used" hidden><b id="used-count"></b> converted</span></div>
+          <div class="label-top mono"><span class="side">Side A</span><span class="formats">WAV &middot; AIFF &middot; OGG &rarr; MP3</span><span class="used" id="used" hidden><b id="used-count"></b> converted</span></div>
           <div class="label-body">
             <div class="label-main">
               <h1 class="label-title"><span class="t-dub">DUB</span><span class="t-deck">DECK</span><span class="visually-hidden">: free WAV to MP3 converter</span></h1>
@@ -182,22 +182,22 @@
           <div class="hero-facts">
             <span class="fact mono">Free</span>
             <span class="fact mono">Nothing uploaded</span>
-            <span class="fact mono">WAV, AIFF, OGG, MP3</span>
+            <span class="fact mono">WAV, AIFF, OGG</span>
             <span class="fact mono">Under 16 MB option</span>
           </div>
         </div>
 
         <div class="window">
-          <label class="drop" id="drop" for="file" tabindex="0" role="button" aria-label="Choose WAV, AIFF, OGG or MP3 files to convert">
+          <label class="drop" id="drop" for="file" tabindex="0" role="button" aria-label="Choose WAV, AIFF or OGG files to convert">
             <svg class="reel reel-l" viewBox="0 0 100 100" aria-hidden="true"><circle class="tape" cx="50" cy="50" r="47" fill="#3a2a20"/><g class="spin"><circle cx="50" cy="50" r="25" fill="#E9E2D0"/><circle cx="50" cy="50" r="16" fill="#0B0A09"/><g fill="#E9E2D0"><rect x="47" y="35" width="6" height="9" transform="rotate(0 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(60 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(120 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(180 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(240 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(300 50 50)"/></g></g></svg>
             <div class="drop-mid">
               <p class="drop-title">Drop audio files here</p>
               <p class="drop-sub">or click to choose. Several at once is fine.</p>
-              <p class="drop-formats mono">WAV &middot; AIFF &middot; OGG &middot; OPUS &middot; MP3</p>
+              <p class="drop-formats mono">WAV &middot; AIFF &middot; OGG &middot; OPUS</p>
             </div>
             <svg class="reel reel-r" viewBox="0 0 100 100" aria-hidden="true"><circle class="tape" cx="50" cy="50" r="47" fill="#3a2a20"/><g class="spin"><circle cx="50" cy="50" r="25" fill="#E9E2D0"/><circle cx="50" cy="50" r="16" fill="#0B0A09"/><g fill="#E9E2D0"><rect x="47" y="35" width="6" height="9" transform="rotate(0 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(60 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(120 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(180 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(240 50 50)"/><rect x="47" y="35" width="6" height="9" transform="rotate(300 50 50)"/></g></g></svg>
           </label>
-          <input type="file" id="file" accept=".wav,.wave,.aif,.aiff,.aifc,.ogg,.oga,.opus,.mp3,.mpga,audio/*" multiple class="visually-hidden">
+          <input type="file" id="file" accept=".wav,.wave,.aif,.aiff,.aifc,.ogg,.oga,.opus" multiple class="visually-hidden">
         </div>
 
         <div class="deck-cap mono"><span class="cap-text">Pick a mode, then drop files</span><span class="cap-rec" aria-hidden="true"><i class="rec"></i><b class="counter"></b></span></div>
@@ -250,7 +250,7 @@
       </div>
       <div class="grid">
         <article class="card"><span class="num mono">01</span><h3>Pick a mode</h3><p>Max quality for 320 kbps, or Convert to sharing size for an MP3 under 16 MB.</p></article>
-        <article class="card"><span class="num mono">02</span><h3>Drop your files</h3><p>WAV, AIFF, OGG or MP3, one or several. The conversion runs on your device.</p></article>
+        <article class="card"><span class="num mono">02</span><h3>Drop your files</h3><p>WAV, AIFF or OGG, one or several. The conversion runs on your device.</p></article>
         <article class="card"><span class="num mono">03</span><h3>Save the MP3s</h3><p>Each file downloads automatically, and the page shows its bitrate and size.</p></article>
       </div>
       <div class="proof">
@@ -280,7 +280,7 @@
         <details><summary>Is my file uploaded?</summary><p>No. The conversion runs in your browser, on your device. There's no account and your audio is never sent anywhere. The only thing the page sends out is a tiny anonymous ping to a public counter (the number on the cassette) when a file finishes, with no file name, no file details and nothing about you. Don't take our word for it: open your browser's network tab, convert a file, and watch.</p></details>
         <details><summary>How does sharing size work, and what is under 16 MB for?</summary><p>It looks for the best quality that still fits under 16 MB, then shows you the bitrate and size when each file is done. A 12 minute stereo WAV would be about 27 MB at 320 kbps. Here it came out at 160 kbps and 13.7 MB. If it has to go below 64 kbps, it switches to mono. The 16 MB target is for files you want to send: chat, email, a client's inbox. WhatsApp is one place people share files. We can't speak for any app's limit, so check yours.</p></details>
         <details><summary>Is 320 kbps the same as my WAV?</summary><p>No. 320 kbps is the most an MP3 can offer, but MP3 is lossy: a smaller file made by discarding audio data, not a copy of your WAV. Keep the WAV as your master, and send it or the stems when someone needs to mix, master or process the track.</p></details>
-        <details><summary>What files work?</summary><p>WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files work too, so you can re-encode one to 320 kbps or squeeze it under 16 MB. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo.</p></details>
+        <details><summary>What files work?</summary><p>WAV, AIFF, AIF and AIFC, as PCM at 8, 16, 24 or 32-bit, plus 32-bit float. OGG and Opus files (Vorbis or Opus audio) work too, because your browser decodes them. No re-export needed. Compressed AIFC isn't supported. MP3 files aren't accepted: re-encoding an MP3 only loses more quality, so start from your WAV or AIFF. Sample rate and channels are handled for you: 44.1 and 48 kHz are kept, other rates like 96 kHz are resampled to 44.1, and anything over two channels is downmixed to stereo.</p></details>
         <details><summary>What if it says the file is too long?</summary><p>In sharing size mode, past roughly an hour of audio it stops with an error instead of handing you something that won't fit. Split the track into parts and run them again. Max quality never promises a size, and at 320 kbps a track over roughly 6 to 7 minutes will be bigger than 16 MB. We haven't tested a maximum file size, so we won't quote one.</p></details>
         <details><summary>Do tags and artwork survive?</summary><p>AIFF tags and artwork are dropped. We haven't verified what happens to WAV tags, so assume nothing and re-tag after converting.</p></details>
         <details><summary>Which browsers does it work in?</summary><p>We've tested in Chrome. Other modern browsers may work, but we haven't verified them, so we won't say they do.</p></details>

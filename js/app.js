@@ -77,6 +77,9 @@ async function convert(f) {
   li.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 
   try {
+    if (/\.(mp3|mpga)$/i.test(f.name) || f.type === 'audio/mpeg') {
+      throw new Error('Already an MP3. Re-encoding an MP3 only lowers its quality, so start from your WAV or AIFF.');
+    }
     const input = new Input({ source: new BlobSource((await isAiff(f)) ? await aiffToWav(f) : f), formats: ALL_FORMATS });
     const track = await input.getPrimaryAudioTrack();
     if (!track) throw new Error("No audio found in this file. Check that it's the one you meant.");

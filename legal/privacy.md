@@ -2,7 +2,7 @@
 
 **Last updated: [DATE OF PUBLICATION]**
 
-Dubdeck is a small tool that turns WAV, AIFF, OGG and MP3 files into MP3s inside
+Dubdeck is a small tool that turns WAV, AIFF and OGG files into MP3s inside
 your browser. We don't collect anything about you or your files. Here's exactly
 what happens when you use it.
 
